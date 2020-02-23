@@ -14,12 +14,17 @@
 
 PATH_FILES := vendor/huawei/hwp6_u06/proprietary
 
-PRODUCT_COPY_FILES += \
-    $(PATH_FILES)/app/GlobalDolbyEffect.apk:system/app/GlobalDolbyEffect.apk \
-    $(PATH_FILES)/app/supl20Service.apk:system/app/supl20Service.apk
+#PRODUCT_COPY_FILES += \
+#    $(PATH_FILES)/app/GlobalDolbyEffect.apk:system/app/GlobalDolbyEffect.apk \
+#    $(PATH_FILES)/app/supl20Service.apk:system/app/supl20Service.apk
 
-PRODUCT_COPY_FILES += \
-    $(PATH_FILES)/priv-app/Gallery2.apk:system/priv-app/Gallery2.apk
+#PRODUCT_COPY_FILES += \
+#    $(PATH_FILES)/priv-app/Gallery2.apk:system/priv-app/Gallery2.apk
+
+PRODUCT_PACKAGES += \
+    GlobalDolbyEffect \
+    supl20Service \
+    Gallery2
 
 PRODUCT_COPY_FILES += \
     $(PATH_FILES)/bin/afar:system/bin/afar \
