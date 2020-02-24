@@ -14,12 +14,18 @@
 
 PATH_FILES := vendor/huawei/hwp6_u06/proprietary
 
-PRODUCT_COPY_FILES += \
-    $(PATH_FILES)/app/GlobalDolbyEffect.apk:system/app/GlobalDolbyEffect.apk \
-    $(PATH_FILES)/app/supl20Service.apk:system/app/supl20Service.apk
+# Mokee 9 doesn't allow copying APKs directly. Use PRODUCT_PACKAGES instead.
+#PRODUCT_COPY_FILES += \
+#    $(PATH_FILES)/app/GlobalDolbyEffect.apk:system/app/GlobalDolbyEffect.apk \
+#    $(PATH_FILES)/app/supl20Service.apk:system/app/supl20Service.apk
 
-PRODUCT_COPY_FILES += \
-    $(PATH_FILES)/priv-app/Gallery2.apk:system/priv-app/Gallery2.apk
+#PRODUCT_COPY_FILES += \
+#    $(PATH_FILES)/priv-app/Gallery2.apk:system/priv-app/Gallery2.apk
+
+PRODUCT_PACKAGES += \
+    GlobalDolbyEffect \
+    supl20Service \
+    Gallery2
 
 PRODUCT_COPY_FILES += \
     $(PATH_FILES)/bin/afar:system/bin/afar \
@@ -41,7 +47,6 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/bin/Injection_nv:system/bin/Injection_nv \
     $(PATH_FILES)/bin/Log_MD:system/bin/Log_MD \
     $(PATH_FILES)/bin/MDM_DLOADER:system/bin/MDM_DLOADER \
-    $(PATH_FILES)/bin/mediaserver:system/bin/mediaserver \
     $(PATH_FILES)/bin/modemlogcat:system/bin/modemlogcat \
     $(PATH_FILES)/bin/modemlogcat_balong:system/bin/modemlogcat_balong \
     $(PATH_FILES)/bin/modemlogcat_lte:system/bin/modemlogcat_lte \
@@ -62,7 +67,6 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/bin/ser2soc:system/bin/ser2soc \
     $(PATH_FILES)/bin/sprd_download:system/bin/sprd_download \
     $(PATH_FILES)/bin/supl20clientd:system/bin/supl20clientd \
-    $(PATH_FILES)/bin/surfaceflinger:system/bin/surfaceflinger \
     $(PATH_FILES)/bin/test_server:system/bin/test_server
 
 PRODUCT_COPY_FILES += \
@@ -81,7 +85,6 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/egl/libGLESv2_VIVANTE.so:system/lib/egl/libGLESv2_VIVANTE.so
 
 PRODUCT_COPY_FILES += \
-    $(PATH_FILES)/lib/hw/audio.a2dp.default.so:system/lib/hw/audio.a2dp.default.so \
     $(PATH_FILES)/lib/hw/audio.primary.k3v2oem1.so:system/lib/hw/audio.primary.hwp6_u06.so \
     $(PATH_FILES)/lib/hw/audio_policy.default.so:system/lib/hw/audio_policy.hwp6_u06.so \
     $(PATH_FILES)/lib/hw/bluetooth.default.so:system/lib/hw/bluetooth.default.so \
@@ -111,16 +114,12 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/lib_8290.so:system/lib/lib_8290.so \
     $(PATH_FILES)/lib/libagnss.so:system/lib/libagnss.so \
     $(PATH_FILES)/lib/libassist.so:system/lib/libassist.so \
-    $(PATH_FILES)/lib/libaudioflinger.so:system/lib/libaudioflinger.so \
     $(PATH_FILES)/lib/lib_balong_nvm.so:system/lib/lib_balong_nvm.so \
     $(PATH_FILES)/lib/libbalong-ril.so:system/lib/libbalong-ril.so \
     $(PATH_FILES)/lib/libBestShot.so:system/lib/libBestShot.so \
     $(PATH_FILES)/lib/libboard_param.so:system/lib/libboard_param.so \
-    $(PATH_FILES)/lib/libcamera_client.so:system/lib/libcamera_client.so \
     $(PATH_FILES)/lib/libcamera_core.so:system/lib/libcamera_core.so \
-    $(PATH_FILES)/lib/libcamera_metadata.so:system/lib/libcamera_metadata.so \
     $(PATH_FILES)/lib/libcamera_omron.so:system/lib/libcamera_omron.so \
-    $(PATH_FILES)/lib/libcameraservice.so:system/lib/libcameraservice.so \
     $(PATH_FILES)/lib/libclientlogger.so:system/lib/libclientlogger.so \
     $(PATH_FILES)/lib/libdevproxy.so:system/lib/libdevproxy.so \
     $(PATH_FILES)/lib/libdolbyaudioeffectnativeservice.so:system/lib/libdolbyaudioeffectnativeservice.so \
@@ -131,7 +130,6 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/libGLSLC.so:system/lib/libGLSLC.so \
     $(PATH_FILES)/lib/libgnssutils.so:system/lib/libgnssutils.so \
     $(PATH_FILES)/lib/libgnuexif.so:system/lib/libgnuexif.so \
-    $(PATH_FILES)/lib/libgui.so:system/lib/libgui.so \
     $(PATH_FILES)/lib/libhdr.so:system/lib/libhdr.so \
     $(PATH_FILES)/lib/libhelixplayer.so:system/lib/libhelixplayer.so \
     $(PATH_FILES)/lib/libhuawei-audio-ril.so:system/lib/libhuawei-audio-ril.so \
@@ -158,7 +156,6 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/lib_k3_omx_vp8.so:system/lib/lib_k3_omx_vp8.so \
     $(PATH_FILES)/lib/liblinearalloc.so:system/lib/liblinearalloc.so \
     $(PATH_FILES)/lib/libllxml.so:system/lib/libllxml.so \
-    $(PATH_FILES)/lib/libmediaplayerservice.so:system/lib/libmediaplayerservice.so \
     $(PATH_FILES)/lib/libMirrorAudioService.so:system/lib/libMirrorAudioService.so \
     $(PATH_FILES)/lib/libmirror_media.so:system/lib/libmirror_media.so \
     $(PATH_FILES)/lib/libmirror_media_platform.so:system/lib/libmirror_media_platform.so \
@@ -183,36 +180,14 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/libscremotell.so:system/lib/libscremotell.so \
     $(PATH_FILES)/lib/libscremoteprotocol.so:system/lib/libscremoteprotocol.so \
     $(PATH_FILES)/lib/libsprd-ril.so:system/lib/libsprd-ril.so \
-    $(PATH_FILES)/lib/libstagefright.so:system/lib/libstagefright.so \
-    $(PATH_FILES)/lib/libstagefright_amrnb_common.so:system/lib/libstagefright_amrnb_common.so \
     $(PATH_FILES)/lib/libstagefright_avc_common.so:system/lib/libstagefright_avc_common.so \
     $(PATH_FILES)/lib/libstagefright_chromium_http.so:system/lib/libstagefright_chromium_http.so \
-    $(PATH_FILES)/lib/libstagefright_enc_common.so:system/lib/libstagefright_enc_common.so \
-    $(PATH_FILES)/lib/libstagefright_foundation.so:system/lib/libstagefright_foundation.so \
-    $(PATH_FILES)/lib/libstagefright_httplive.so:system/lib/libstagefright_httplive.so \
     $(PATH_FILES)/lib/libstagefrighthw.so:system/lib/libstagefrighthw.so \
-    $(PATH_FILES)/lib/libstagefright_omx.so:system/lib/libstagefright_omx.so \
-    $(PATH_FILES)/lib/libstagefright_soft_aacdec.so:system/lib/libstagefright_soft_aacdec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_aacenc.so:system/lib/libstagefright_soft_aacenc.so \
-    $(PATH_FILES)/lib/libstagefright_soft_amrdec.so:system/lib/libstagefright_soft_amrdec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_amrnbenc.so:system/lib/libstagefright_soft_amrnbenc.so \
-    $(PATH_FILES)/lib/libstagefright_soft_amrwbenc.so:system/lib/libstagefright_soft_amrwbenc.so \
     $(PATH_FILES)/lib/libstagefright_soft_ddpdec.so:system/lib/libstagefright_soft_ddpdec.so \
     $(PATH_FILES)/lib/libstagefright_soft_ffmpegaudiodec.so:system/lib/libstagefright_soft_ffmpegaudiodec.so \
     $(PATH_FILES)/lib/libstagefright_soft_ffmpegvideodec.so:system/lib/libstagefright_soft_ffmpegvideodec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_flacenc.so:system/lib/libstagefright_soft_flacenc.so \
-    $(PATH_FILES)/lib/libstagefright_soft_g711dec.so:system/lib/libstagefright_soft_g711dec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_gsmdec.so:system/lib/libstagefright_soft_gsmdec.so \
     $(PATH_FILES)/lib/libstagefright_soft_h264dec.so:system/lib/libstagefright_soft_h264dec.so \
     $(PATH_FILES)/lib/libstagefright_soft_h264enc.so:system/lib/libstagefright_soft_h264enc.so \
-    $(PATH_FILES)/lib/libstagefright_soft_mp3dec.so:system/lib/libstagefright_soft_mp3dec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_mpeg4dec.so:system/lib/libstagefright_soft_mpeg4dec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_mpeg4enc.so:system/lib/libstagefright_soft_mpeg4enc.so \
-    $(PATH_FILES)/lib/libstagefright_soft_rawdec.so:system/lib/libstagefright_soft_rawdec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_vorbisdec.so:system/lib/libstagefright_soft_vorbisdec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_vpxdec.so:system/lib/libstagefright_soft_vpxdec.so \
-    $(PATH_FILES)/lib/libstagefright_soft_vpxenc.so:system/lib/libstagefright_soft_vpxenc.so \
-    $(PATH_FILES)/lib/libstagefright_wfd.so:system/lib/libstagefright_wfd.so \
     $(PATH_FILES)/lib/libstagefright_yuv.so:system/lib/libstagefright_yuv.so \
     $(PATH_FILES)/lib/libsupl10client.so:system/lib/libsupl10client.so \
     $(PATH_FILES)/lib/libsupl20client.so:system/lib/libsupl20client.so \
@@ -225,11 +200,9 @@ PRODUCT_COPY_FILES += \
     $(PATH_FILES)/lib/libsupl20oasn1supl1.so:system/lib/libsupl20oasn1supl1.so \
     $(PATH_FILES)/lib/libsupl20oasn1supl2.so:system/lib/libsupl20oasn1supl2.so \
     $(PATH_FILES)/lib/libsupl20oasn1tia.so:system/lib/libsupl20oasn1tia.so \
-    $(PATH_FILES)/lib/libsurfaceflinger.so:system/lib/libsurfaceflinger.so \
     $(PATH_FILES)/lib/libsurfaceflinger_client.so:system/lib/libsurfaceflinger_client.so \
     $(PATH_FILES)/lib/libtfa9887.so:system/lib/libtfa9887.so \
     $(PATH_FILES)/lib/libtrack.so:system/lib/libtrack.so \
-    $(PATH_FILES)/lib/libui.so:system/lib/libui.so \
     $(PATH_FILES)/lib/libvpp.so:system/lib/libvpp.so \
     $(PATH_FILES)/lib/libxgold-ril.so:system/lib/libxgold-ril.so
 
